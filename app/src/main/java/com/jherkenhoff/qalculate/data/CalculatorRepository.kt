@@ -59,7 +59,7 @@ class CalculatorRepository @Inject constructor(
         appScope.launch {
             customFunctionDao.getAll().collect { savedFunctions ->
                 _customFunctions.value = savedFunctions
-                savedFunctions.forEach { 
+                savedFunctions.forEach {
                     defineFunctionInternal(it.name, it.title, it.description, it.arguments, it.expression)
                 }
                 _functions.value = calc.functions
@@ -74,7 +74,7 @@ class CalculatorRepository @Inject constructor(
     private fun defineFunctionInternal(name: String, title: String, description: String, args: String, expression: String) {
         val definition = if (args.isBlank()) "$name := $expression" else "$name($args) := $expression"
         calc.calculateAndPrint(definition, 2000)
-        
+
         val func = calc.getFunction(name)
         if (func != null) {
             if (title.isNotBlank()) func.setTitle(title)

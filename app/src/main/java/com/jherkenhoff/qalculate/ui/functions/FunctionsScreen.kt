@@ -235,7 +235,9 @@ fun AddFunctionDialog(
                     value = expression,
                     onValueChange = { expression = it },
                     label = { Text(stringResource(R.string.add_function_expression_label)) },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    minLines = 3,
+                    maxLines = 10
                 )
             }
         },

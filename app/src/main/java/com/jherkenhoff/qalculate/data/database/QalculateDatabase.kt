@@ -10,7 +10,7 @@ import com.jherkenhoff.qalculate.data.database.model.CustomFunctionData
 
 @Database(
     entities = [CalculationHistoryItemData::class, CustomFunctionData::class],
-    version = 2,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(DateTimeTypeConverters::class)
