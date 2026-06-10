@@ -36,7 +36,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideCalculator(application: Application): Calculator {
+    fun provideCalculator(application: Application): Calculator {
         val calc = Calculator()
         calc.loadGlobalDefinitions()
         return calc

@@ -150,7 +150,11 @@ class CalculatorRepository @Inject constructor(
             return "$beforeToString to $afterToString"
         } else {
             val parsedExpression = calc.parse(unlocalizedInput, parseOptions)
-            return calc.print(parsedExpression, 2000, printOptions, true, 1, libqalculateConstants.TAG_TYPE_HTML)
+            val printed = calc.print(parsedExpression, 2000, printOptions, true, 1, libqalculateConstants.TAG_TYPE_HTML)
+            if (printed.startsWith("save(") && (unlocalizedInput.contains(":=") || unlocalizedInput.contains("="))) {
+                return input
+            }
+            return printed
         }
     }
 }

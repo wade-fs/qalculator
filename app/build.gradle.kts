@@ -1,9 +1,9 @@
 import com.android.build.api.variant.FilterConfiguration.FilterType.ABI
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
@@ -19,6 +19,7 @@ val abiFilterList = (properties["ABI_FILTERS"] as String).split(';')
 android {
     namespace = "com.jherkenhoff.qalculate"
     compileSdk = 35
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "com.jherkenhoff.qalculate"
@@ -52,17 +53,27 @@ android {
     }
 
     signingConfigs {
+        val props = Properties()
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use<java.io.InputStream, Unit> { props.load(it) }
+        }
+
         create("release") {
-            storeFile = file(System.getenv("SIGNING_KEY_FILE") ?: "release.jks")
-            storePassword = System.getenv("SIGNING_STORE_PASSWORD")
-            keyAlias = System.getenv("SIGNING_KEY_ALIAS")
-            keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+            storeFile = file(System.getenv("SIGNING_KEY_FILE") ?: props.getProperty("signing.key.file") ?: "release.jks")
+            storePassword = System.getenv("SIGNING_STORE_PASSWORD") ?: props.getProperty("signing.store.password")
+            keyAlias = System.getenv("SIGNING_KEY_ALIAS") ?: props.getProperty("signing.key.alias")
+            keyPassword = System.getenv("SIGNING_KEY_PASSWORD") ?: props.getProperty("signing.key.password")
         }
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("release")
+            val config = signingConfigs.getByName("release")
+            val isSigningConfigured = config.storeFile?.exists() == true && !config.storePassword.isNullOrBlank()
+            if (isSigningConfigured) {
+                signingConfig = config
+            }
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -109,7 +120,6 @@ android {
         compose = true
         // Disable unused AGP features
         aidl = false
-        renderScript = false
         shaders = false
         buildConfig = true
     }
