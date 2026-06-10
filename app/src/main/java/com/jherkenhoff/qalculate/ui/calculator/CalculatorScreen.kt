@@ -55,8 +55,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jherkenhoff.qalculate.R
 import androidx.room.util.TableInfo
 import com.jherkenhoff.qalculate.data.database.model.CalculationHistoryItemData
 import com.jherkenhoff.qalculate.domain.AutocompleteResult
@@ -244,7 +246,13 @@ fun CalculatorScreenContent(
                 ) {
                     TabPanel(
                         tabItems = keypads.map {
-                            Pair(it.icon, it.name)
+                            val localizedName = when (it.name) {
+                                "Basic" -> stringResource(R.string.keypad_basic)
+                                "Advanced" -> stringResource(R.string.keypad_advanced)
+                                "Keyboard" -> stringResource(R.string.keypad_keyboard)
+                                else -> it.name
+                            }
+                            Pair(it.icon, localizedName)
                         },
                         activeTabItemIndex = activeKeypadIndex,
                         collapse = internalAutocompleteResult.items.isNotEmpty(),

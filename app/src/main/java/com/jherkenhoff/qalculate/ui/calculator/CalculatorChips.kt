@@ -17,8 +17,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jherkenhoff.qalculate.R
 import com.jherkenhoff.qalculate.model.UserPreferences
 import com.jherkenhoff.qalculate.ui.common.SingleEnumSelectDialog
 
@@ -82,12 +84,16 @@ fun CalculatorChips(
 
 
     if (angleUnitDialogOpen) {
+        val title = stringResource(R.string.chip_angle_unit)
+        val deg = stringResource(R.string.chip_angle_unit_degrees)
+        val rad = stringResource(R.string.chip_angle_unit_radians)
+        val gra = stringResource(R.string.chip_angle_unit_gradians)
         SingleEnumSelectDialog<UserPreferences.AngleUnit>(
-            "Angle unit",
+            title,
             enumLabelMap = { when (it) {
-                UserPreferences.AngleUnit.DEGREES -> "Degrees"
-                UserPreferences.AngleUnit.RADIANS -> "Radians"
-                UserPreferences.AngleUnit.GRADIANS -> "Gradians"
+                UserPreferences.AngleUnit.DEGREES -> deg
+                UserPreferences.AngleUnit.RADIANS -> rad
+                UserPreferences.AngleUnit.GRADIANS -> gra
             }},
             currentSelection = userPreferences.angleUnit,
             onSelect = { onUserPreferencesChanged(userPreferences.copy(angleUnit = it)) },
@@ -96,12 +102,16 @@ fun CalculatorChips(
     }
 
     if (approximationModeDialogOpen) {
+        val title = stringResource(R.string.chip_approximation_mode)
+        val exact = stringResource(R.string.chip_approximation_mode_exact)
+        val tryExact = stringResource(R.string.chip_approximation_mode_try_exact)
+        val approx = stringResource(R.string.chip_approximation_mode_approximate)
         SingleEnumSelectDialog<UserPreferences.ApproximationMode>(
-            "Approximation mode",
+            title,
             enumLabelMap = { when (it) {
-                UserPreferences.ApproximationMode.EXACT -> "Always exact"
-                UserPreferences.ApproximationMode.TRY_EXACT -> "Try exact"
-                UserPreferences.ApproximationMode.APPROXIMATE -> "Approximate"
+                UserPreferences.ApproximationMode.EXACT -> exact
+                UserPreferences.ApproximationMode.TRY_EXACT -> tryExact
+                UserPreferences.ApproximationMode.APPROXIMATE -> approx
             }},
             currentSelection = userPreferences.approximationMode,
             onSelect = { onUserPreferencesChanged(userPreferences.copy(approximationMode = it)) },
@@ -110,12 +120,16 @@ fun CalculatorChips(
     }
 
     if (numericalDisplayModeDialogOpen) {
+        val title = stringResource(R.string.chip_numerical_display)
+        val normal = stringResource(R.string.chip_numerical_display_normal)
+        val sci = stringResource(R.string.chip_numerical_display_scientific)
+        val eng = stringResource(R.string.chip_numerical_display_engineering)
         SingleEnumSelectDialog<UserPreferences.NumericalDisplayMode>(
-            "Numerical display",
+            title,
             enumLabelMap = { when (it) {
-                UserPreferences.NumericalDisplayMode.NORMAL -> "Normal"
-                UserPreferences.NumericalDisplayMode.SCIENTIFIC -> "Scientific"
-                UserPreferences.NumericalDisplayMode.ENGINEERING -> "Engineering"
+                UserPreferences.NumericalDisplayMode.NORMAL -> normal
+                UserPreferences.NumericalDisplayMode.SCIENTIFIC -> sci
+                UserPreferences.NumericalDisplayMode.ENGINEERING -> eng
             }},
             currentSelection = userPreferences.numericalDisplayMode,
             onSelect = { onUserPreferencesChanged(userPreferences.copy(numericalDisplayMode = it)) },
@@ -124,16 +138,24 @@ fun CalculatorChips(
     }
 
     if (numberFractionFormatDialogOpen) {
+        val title = stringResource(R.string.chip_number_fraction_format)
+        val decimal = stringResource(R.string.chip_number_fraction_format_decimal)
+        val decimalExact = stringResource(R.string.chip_number_fraction_format_decimal_exact)
+        val fractional = stringResource(R.string.chip_number_fraction_format_fractional)
+        val combined = stringResource(R.string.chip_number_fraction_format_combined)
+        val percent = stringResource(R.string.chip_number_fraction_format_percent)
+        val permille = stringResource(R.string.chip_number_fraction_format_permille)
+        val permyriad = stringResource(R.string.chip_number_fraction_format_permyriad)
         SingleEnumSelectDialog<UserPreferences.NumberFractionFormat>(
-            "Number fraction format",
+            title,
             enumLabelMap = { when (it) {
-                UserPreferences.NumberFractionFormat.FRACTION_DECIMAL -> "Decimal"
-                UserPreferences.NumberFractionFormat.FRACTION_DECIMAL_EXACT -> "Decimal exact"
-                UserPreferences.NumberFractionFormat.FRACTION_FRACTIONAL -> "Fractional"
-                UserPreferences.NumberFractionFormat.FRACTION_COMBINED -> "Combined"
-                UserPreferences.NumberFractionFormat.FRACTION_PERCENT -> "Percent"
-                UserPreferences.NumberFractionFormat.FRACTION_PERMILLE -> "Permille"
-                UserPreferences.NumberFractionFormat.FRACTION_PERMYRIAD -> "Permyriad"
+                UserPreferences.NumberFractionFormat.FRACTION_DECIMAL -> decimal
+                UserPreferences.NumberFractionFormat.FRACTION_DECIMAL_EXACT -> decimalExact
+                UserPreferences.NumberFractionFormat.FRACTION_FRACTIONAL -> fractional
+                UserPreferences.NumberFractionFormat.FRACTION_COMBINED -> combined
+                UserPreferences.NumberFractionFormat.FRACTION_PERCENT -> percent
+                UserPreferences.NumberFractionFormat.FRACTION_PERMILLE -> permille
+                UserPreferences.NumberFractionFormat.FRACTION_PERMYRIAD -> permyriad
             }},
             currentSelection = userPreferences.numberFractionFormat,
             onSelect = { onUserPreferencesChanged(userPreferences.copy(numberFractionFormat = it)) },

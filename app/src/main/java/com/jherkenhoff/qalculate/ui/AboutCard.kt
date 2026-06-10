@@ -58,7 +58,7 @@ fun AboutCard(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "Qalculate logo",
+                        contentDescription = stringResource(R.string.about_logo_description),
                         modifier = Modifier
                             .size(50.dp)
                             .shadow(6.dp, shape = CircleShape)
@@ -67,10 +67,10 @@ fun AboutCard(
                     Column {
                         Text(text = "Qalculate!", style = MaterialTheme.typography.headlineSmall)
                         Text(
-                            text = "App version " + BuildConfig.VERSION_NAME
+                            text = stringResource(R.string.about_app_version, BuildConfig.VERSION_NAME)
                         )
                         Text(
-                            text = "libqalculate version $libqalculateVersion"
+                            text = stringResource(R.string.about_lib_version, libqalculateVersion)
                         )
                     }
                 }
@@ -95,16 +95,26 @@ fun GithubText(
     modifier: Modifier = Modifier
 ) {
     // Display a link in the text
+    val github = stringResource(R.string.about_github)
+    val text = stringResource(R.string.about_check_out_on, github)
+    val startIndex = text.indexOf(github)
+    val endIndex = startIndex + github.length
+
     Text(
         buildAnnotatedString {
-            append("Check out on ")
-            withLink(
-                LinkAnnotation.Url(
-                    "https://github.com/jherkenhoff/qalculate-android",
-                    TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.Underline))
-                )
-            ) {
-                append("GitHub")
+            if (startIndex != -1) {
+                append(text.substring(0, startIndex))
+                withLink(
+                    LinkAnnotation.Url(
+                        "https://github.com/jherkenhoff/qalculate-android",
+                        TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.Underline))
+                    )
+                ) {
+                    append(github)
+                }
+                append(text.substring(endIndex))
+            } else {
+                append(text)
             }
         },
         textAlign = TextAlign.Center,
@@ -116,18 +126,38 @@ fun GithubText(
 @Composable
 fun LicenseText() {
     // Display a link in the text
+    val license = stringResource(R.string.about_license)
+    val details = stringResource(R.string.about_details)
+    val format = stringResource(R.string.about_no_warranty_full, license, details)
+
+    val licenseIndex = format.indexOf(license)
+    val detailsIndex = format.indexOf(details)
+
     Text(
         buildAnnotatedString {
-            append("This program comes with absolutely no warranty. See the ")
-            withLink(
-                LinkAnnotation.Url(
-                    "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
-                    TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.Underline))
-                )
-            ) {
-                append("GNU General Public License, version 2 or later")
+            var currentPos = 0
+            val indices = listOf(
+                licenseIndex to license,
+                detailsIndex to details
+            ).filter { it.first != -1 }.sortedBy { it.first }
+
+            for ((index, text) in indices) {
+                append(format.substring(currentPos, index))
+                if (text == license) {
+                    withLink(
+                        LinkAnnotation.Url(
+                            "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+                            TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.Underline))
+                        )
+                    ) {
+                        append(license)
+                    }
+                } else {
+                    append(text)
+                }
+                currentPos = index + text.length
             }
-            append(" for details.")
+            append(format.substring(currentPos))
         },
         textAlign = TextAlign.Center
     )

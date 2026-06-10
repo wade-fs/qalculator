@@ -47,8 +47,10 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jherkenhoff.qalculate.R
 import com.jherkenhoff.qalculate.model.KeypadDefinition
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -62,6 +64,15 @@ fun KeypadSwitch2(
     compact: Boolean = false
 ) {
     var expanded by remember{ mutableStateOf(false) }
+
+    val localizedKeypadName: @Composable (String) -> String = { name ->
+        when (name) {
+            "Basic" -> stringResource(R.string.keypad_basic)
+            "Advanced" -> stringResource(R.string.keypad_advanced)
+            "Keyboard" -> stringResource(R.string.keypad_keyboard)
+            else -> name
+        }
+    }
 
     Row(verticalAlignment = Alignment.Bottom) {
         val c = MaterialTheme.colorScheme.surfaceContainerHighest
@@ -111,7 +122,7 @@ fun KeypadSwitch2(
                             onClick = { expanded = true }
                         ) {
                             Icon(keypads[activeKeypad].icon, null)
-                            Text(keypads[activeKeypad].name)
+                            Text(localizedKeypadName(keypads[activeKeypad].name))
                         }
 
                     } else {
@@ -136,7 +147,7 @@ fun KeypadSwitch2(
                                     }
                                 ) {
                                     Icon(keypads[item].icon, null)
-                                    Text(keypads[item].name)
+                                    Text(localizedKeypadName(keypads[item].name))
                                 }
                             }
                         }

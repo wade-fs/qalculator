@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Qalculate!</string>
+    <string name="textfield_hint">輸入運算式</string>
+    <string name="about_qalculate_text">基於強大的 Qalculate! 桌面版開發的多功能計算機。</string>
+    <string name="navigation_calculator">計算機</string>
+    <string name="navigation_functions">函數</string>
+    <string name="navigation_variables">變數</string>
+    <string name="navigation_units">單位</string>
+    <string name="navigation_datasets">資料集</string>
+    <string name="navigation_about">關於</string>
+    <string name="navigation_settings">設定</string>
+    <string name="open_menu_content_description">開啟選單</string>
+    <string name="clear_history">清除歷史紀錄</string>
+    <string name="clear_history_dialog_text">所有歷史紀錄將被永久刪除且無法恢復。</string>
+    <string name="clear_history_dialog_title">清除計算歷史？</string>
+    <string name="dialog_clear_button">清除</string>
+    <string name="dialog_cancel_button">取消</string>
+
+    <!-- Settings -->
+    <string name="settings_title">設定</string>
+    <string name="settings_general_heading">一般</string>
+    <string name="settings_calculation_heading">計算</string>
+    <string name="settings_output_heading">輸出</string>
+    <string name="settings_decimal_separator">小數分隔符</string>
+    <string name="settings_decimal_separator_dot">點</string>
+    <string name="settings_decimal_separator_comma">逗號</string>
+    <string name="settings_multiplication_sign">乘號</string>
+    <string name="settings_multiplication_sign_times">乘 (×)</string>
+    <string name="settings_multiplication_sign_asterisk">星號 (*)</string>
+    <string name="settings_multiplication_sign_alt_dot">替代點 (⋅)</string>
+    <string name="settings_division_sign">除號</string>
+    <string name="settings_division_sign_slash">斜線 (/)</string>
+    <string name="settings_division_sign_division">除 (÷)</string>
+    <string name="settings_division_sign_division_slash">除法斜線 (∕)</string>
+    <string name="settings_preserve_structure_title">保留結構</string>
+    <string name="settings_preserve_structure_desc">盡可能保留輸入結構</string>
+    <string name="settings_negative_exponents_title">負指數</string>
+    <string name="settings_negative_exponents_desc">輸出 A*B⁻¹ 而非 A/B</string>
+    <string name="settings_abbreviate_names_title">縮寫名稱</string>
+    <string name="settings_abbreviate_names_desc">輸出 m 而非 meter</string>
+    <string name="settings_spacious_output_title">寬鬆輸出</string>
+    <string name="settings_spacious_output_desc">使用更多空格以提高可讀性</string>
+    <string name="settings_allow_prefix_in_denominator_title">允許分母使用前綴</string>
+    <string name="settings_allow_prefix_in_denominator_desc">輸出 km/ms 而非 Mm/s</string>
+    <string name="settings_isolate_units_title">隔離單位</string>
+    <string name="settings_isolate_units_desc">將單位放在結果末尾</string>
+    <string name="settings_exp_display_title">指數顯示</string>
+    <string name="settings_interval_display_title">區間顯示</string>
+    <string name="settings_interval_display_concise">簡潔</string>
+    <string name="settings_interval_display_interval">區間</string>
+    <string name="settings_interval_display_plusminus">正負 (±)</string>
+    <string name="settings_interval_display_midpoint">中點</string>
+    <string name="settings_interval_display_relative">相對</string>
+    <string name="settings_interval_display_significant_digits">有效數字</string>
+
+    <!-- Calculator Chips -->
+    <string name="chip_angle_unit">角度單位</string>
+    <string name="chip_angle_unit_degrees">度</string>
+    <string name="chip_angle_unit_radians">弧度</string>
+    <string name="chip_angle_unit_gradians">百分度</string>
+    <string name="chip_approximation_mode">近似模式</string>
+    <string name="chip_approximation_mode_exact">始終精確</string>
+    <string name="chip_approximation_mode_try_exact">嘗試精確</string>
+    <string name="chip_approximation_mode_approximate">近似</string>
+    <string name="chip_numerical_display">數值顯示</string>
+    <string name="chip_numerical_display_normal">正常</string>
+    <string name="chip_numerical_display_scientific">科學</string>
+    <string name="chip_numerical_display_engineering">工程</string>
+    <string name="chip_number_fraction_format">數字分數格式</string>
+    <string name="chip_number_fraction_format_decimal">十進位</string>
+    <string name="chip_number_fraction_format_decimal_exact">精確十進位</string>
+    <string name="chip_number_fraction_format_fractional">分數</string>
+    <string name="chip_number_fraction_format_combined">組合</string>
+    <string name="chip_number_fraction_format_percent">百分比</string>
+    <string name="chip_number_fraction_format_permille">千分比</string>
+    <string name="chip_number_fraction_format_permyriad">萬分比</string>
+
+    <!-- Units Screen -->
+    <string name="units_title">單位</string>
+    <string name="units_search_placeholder">搜尋單位</string>
+    <string name="units_system_label">系統</string>
+    <string name="units_favorite_label">收藏</string>
+    <string name="units_custom_label">自定義</string>
+    <string name="units_light_label">輕量</string>
+
+    <!-- About Card -->
+    <string name="about_logo_description">Qalculate 圖示</string>
+    <string name="about_app_version">應用程式版本 %s</string>
+    <string name="about_lib_version">libqalculate 版本 %s</string>
+    <string name="about_check_out_on">在 %s 查看</string>
+    <string name="about_github">GitHub</string>
+    <string name="about_no_warranty_full">本程式不提供任何保證。請參閱 %1$s 以了解 %2$s。</string>
+    <string name="about_license">GNU 通用公共許可證，版本 2 或更高版本</string>
+    <string name="about_details">詳細資訊</string>
+
+    <!-- Calculator -->
+    <string name="history_empty_title">尚無計算紀錄</string>
+    <string name="history_empty_desc">您的計算歷史將顯示在此處</string>
+    <string name="history_date_today">今天</string>
+    <string name="history_date_yesterday">昨天</string>
+    <string name="history_item_delete">刪除</string>
+    <string name="keypad_basic">基本</string>
+    <string name="keypad_advanced">進階</string>
+    <string name="keypad_keyboard">鍵盤</string>
+    <string name="content_description_close_suggestions">關閉建議</string>
+    <string name="content_description_dismiss_autocomplete">關閉自動完成建議</string>
+    <string name="content_description_return_button">返回按鈕</string>
+    <string name="content_description_open_navigation_menu">開啟導覽選單</string>
+</resources>

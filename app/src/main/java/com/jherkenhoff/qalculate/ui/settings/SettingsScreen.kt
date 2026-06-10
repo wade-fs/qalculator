@@ -54,7 +54,7 @@ fun SettingsScreenContent(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
-                title = { Text("Settings")},
+                title = { Text(stringResource(R.string.settings_title))},
                 navigationIcon = {
                     IconButton(onClick = onNavigateUp) {
                         Icon(
@@ -77,16 +77,18 @@ fun SettingsScreenContent(
         ) {
 
             item {
-                SettingsHeading("General")
+                SettingsHeading(stringResource(R.string.settings_general_heading))
             }
 
             item {
+                val dot = stringResource(R.string.settings_decimal_separator_dot)
+                val comma = stringResource(R.string.settings_decimal_separator_comma)
                 SingleEnumSelectSettingsListItem<UserPreferences.DecimalSeparator>(
-                    "Decimal separator",
+                    stringResource(R.string.settings_decimal_separator),
                     enumLabelMap = {
                         when (it) {
-                            UserPreferences.DecimalSeparator.DOT -> "Dot"
-                            UserPreferences.DecimalSeparator.COMMA -> "Comma"
+                            UserPreferences.DecimalSeparator.DOT -> dot
+                            UserPreferences.DecimalSeparator.COMMA -> comma
                         }
                     },
                     currentSelection = userPreferences.decimalSeparator,
@@ -96,14 +98,17 @@ fun SettingsScreenContent(
             }
 
             item {
+                val times = stringResource(R.string.settings_multiplication_sign_times)
+                val asterisk = stringResource(R.string.settings_multiplication_sign_asterisk)
+                val altDot = stringResource(R.string.settings_multiplication_sign_alt_dot)
                 SingleEnumSelectSettingsListItem<UserPreferences.MultiplicationSign>(
-                    "Multiplication sign",
+                    stringResource(R.string.settings_multiplication_sign),
                     enumLabelMap = {
                         when (it) {
-                            UserPreferences.MultiplicationSign.DOT -> "Dot"
-                            UserPreferences.MultiplicationSign.X -> "Times"
-                            UserPreferences.MultiplicationSign.ASTERISK -> "Asterisk"
-                            UserPreferences.MultiplicationSign.ALTDOT -> "Alt. dot"
+                            UserPreferences.MultiplicationSign.DOT -> times
+                            UserPreferences.MultiplicationSign.X -> times
+                            UserPreferences.MultiplicationSign.ASTERISK -> asterisk
+                            UserPreferences.MultiplicationSign.ALTDOT -> altDot
                         }
                     },
                     currentSelection = userPreferences.multiplicationSign,
@@ -112,13 +117,16 @@ fun SettingsScreenContent(
             }
 
             item {
+                val divSlash = stringResource(R.string.settings_division_sign_division_slash)
+                val slash = stringResource(R.string.settings_division_sign_slash)
+                val division = stringResource(R.string.settings_division_sign_division)
                 SingleEnumSelectSettingsListItem<UserPreferences.DivisionSign>(
-                    "Division sign",
+                    stringResource(R.string.settings_division_sign),
                     enumLabelMap = {
                         when (it) {
-                            UserPreferences.DivisionSign.DIVISION_SLASH -> "Division slash"
-                            UserPreferences.DivisionSign.SLASH -> "Slash"
-                            UserPreferences.DivisionSign.DIVISION -> "Division"
+                            UserPreferences.DivisionSign.DIVISION_SLASH -> divSlash
+                            UserPreferences.DivisionSign.SLASH -> slash
+                            UserPreferences.DivisionSign.DIVISION -> division
                         }
                     },
                     currentSelection = userPreferences.divisionSign,
@@ -129,13 +137,13 @@ fun SettingsScreenContent(
 
 
             item {
-                SettingsHeading("Calculation")
+                SettingsHeading(stringResource(R.string.settings_calculation_heading))
             }
 
             item {
                 SegmentedListItem(
-                    headlineContent = { Text("Preserve structure") },
-                    supportingContent = { Text("Preserve the input structure as much as possible") },
+                    headlineContent = { Text(stringResource(R.string.settings_preserve_structure_title)) },
+                    supportingContent = { Text(stringResource(R.string.settings_preserve_structure_desc)) },
                     trailingContent = {
                         Switch(
                             checked = userPreferences.preserveFormat,
@@ -155,12 +163,12 @@ fun SettingsScreenContent(
             }
 
             item {
-                SettingsHeading("Output")
+                SettingsHeading(stringResource(R.string.settings_output_heading))
             }
             item {
                 SegmentedListItem(
-                    headlineContent = { Text("Negative exponents") },
-                    supportingContent = { Text("Print A${userPreferences.getMultiplicationSignString()}B⁻¹ instead of A${userPreferences.getDivisionSignString()}B") },
+                    headlineContent = { Text(stringResource(R.string.settings_negative_exponents_title)) },
+                    supportingContent = { Text(stringResource(R.string.settings_negative_exponents_desc)) },
                     trailingContent = {
                         Switch(
                             checked = userPreferences.negativeExponents,
@@ -180,8 +188,8 @@ fun SettingsScreenContent(
 
             item {
                 SegmentedListItem(
-                    headlineContent = { Text("Abbreviate names") },
-                    supportingContent = { Text("Print m instead of meter")},
+                    headlineContent = { Text(stringResource(R.string.settings_abbreviate_names_title)) },
+                    supportingContent = { Text(stringResource(R.string.settings_abbreviate_names_desc))},
                     trailingContent = {
                         Switch(
                             checked = userPreferences.abbreviateNames,
@@ -194,8 +202,8 @@ fun SettingsScreenContent(
 
             item {
                 SegmentedListItem(
-                    headlineContent = { Text("Spacious output") },
-                    supportingContent = { Text("Use more spaces to improve readability")},
+                    headlineContent = { Text(stringResource(R.string.settings_spacious_output_title)) },
+                    supportingContent = { Text(stringResource(R.string.settings_spacious_output_desc))},
                     trailingContent = {
                         Switch(
                             checked = userPreferences.spaciousOutput,
@@ -207,8 +215,8 @@ fun SettingsScreenContent(
             }
             item {
                 SegmentedListItem(
-                    headlineContent = { Text("Allow prefix in denominator") },
-                    supportingContent = { Text("Print km${userPreferences.getDivisionSignString()}ms instead of Mm${userPreferences.getDivisionSignString()}s")},
+                    headlineContent = { Text(stringResource(R.string.settings_allow_prefix_in_denominator_title)) },
+                    supportingContent = { Text(stringResource(R.string.settings_allow_prefix_in_denominator_desc))},
                     trailingContent = {
                         Switch(
                             checked = userPreferences.useDenominatorPrefix,
@@ -220,8 +228,8 @@ fun SettingsScreenContent(
             }
             item {
                 SegmentedListItem(
-                    headlineContent = { Text("Isolate units") },
-                    supportingContent = { Text("Place units at the end of the result")},
+                    headlineContent = { Text(stringResource(R.string.settings_isolate_units_title)) },
+                    supportingContent = { Text(stringResource(R.string.settings_isolate_units_desc))},
                     trailingContent = {
                         Switch(
                             checked = userPreferences.placeUnitsSeparately,
@@ -233,7 +241,7 @@ fun SettingsScreenContent(
             }
             item {
                 SingleEnumSelectSettingsListItem<UserPreferences.ExpDisplay>(
-                    "Exp display",
+                    stringResource(R.string.settings_exp_display_title),
                     enumLabelMap = {
                         when (it) {
                             UserPreferences.ExpDisplay.POWER_OF_10 -> "2.3${userPreferences.getMultiplicationSignString()}10³"
@@ -247,16 +255,22 @@ fun SettingsScreenContent(
                 )
             }
             item {
+                val concise = stringResource(R.string.settings_interval_display_concise)
+                val interval = stringResource(R.string.settings_interval_display_interval)
+                val plusminus = stringResource(R.string.settings_interval_display_plusminus)
+                val midpoint = stringResource(R.string.settings_interval_display_midpoint)
+                val relative = stringResource(R.string.settings_interval_display_relative)
+                val sigDigits = stringResource(R.string.settings_interval_display_significant_digits)
                 SingleEnumSelectSettingsListItem<UserPreferences.IntervalDisplay>(
-                    "Interval display",
+                    stringResource(R.string.settings_interval_display_title),
                     enumLabelMap = {
                         when (it) {
-                            UserPreferences.IntervalDisplay.CONCISE -> "Concise"
-                            UserPreferences.IntervalDisplay.INTERVAL -> "Interval"
-                            UserPreferences.IntervalDisplay.PLUSMINUS -> "Plus minus"
-                            UserPreferences.IntervalDisplay.MIDPOINT -> "Midpoint"
-                            UserPreferences.IntervalDisplay.RELATIVE -> "Relative"
-                            UserPreferences.IntervalDisplay.SIGNIFICANT_DIGITS -> "Significant digits"
+                            UserPreferences.IntervalDisplay.CONCISE -> concise
+                            UserPreferences.IntervalDisplay.INTERVAL -> interval
+                            UserPreferences.IntervalDisplay.PLUSMINUS -> plusminus
+                            UserPreferences.IntervalDisplay.MIDPOINT -> midpoint
+                            UserPreferences.IntervalDisplay.RELATIVE -> relative
+                            UserPreferences.IntervalDisplay.SIGNIFICANT_DIGITS -> sigDigits
                         }
                     },
                     currentSelection = userPreferences.intervalDisplay,

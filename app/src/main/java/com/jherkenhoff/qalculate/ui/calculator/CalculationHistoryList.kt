@@ -30,6 +30,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.jherkenhoff.qalculate.R
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
@@ -37,7 +40,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.jherkenhoff.qalculate.data.database.model.CalculationHistoryItemData
 import com.jherkenhoff.qalculate.ui.common.DelayedAnimatedVisibility
 import kotlinx.coroutines.launch
@@ -77,8 +79,8 @@ fun CalculationHistoryList(
             modifier = modifier.fillMaxSize()
         ) {
             Icon(Icons.Default.History, null, tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
-            Text("No calculations yet", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), style = MaterialTheme.typography.titleLarge)
-            Text("Your calculation history will appear here", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
+            Text(stringResource(R.string.history_empty_title), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), style = MaterialTheme.typography.titleLarge)
+            Text(stringResource(R.string.history_empty_desc), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
         }
     } else {
         Box(
@@ -102,7 +104,7 @@ fun CalculationHistoryList(
                     Spacer(Modifier.height(8.dp))
                 }
                 calculations.sortedBy { it.created }.reversed().groupBy { it.created.toLocalDate() }
-                    .map { (id, list) ->
+                    .forEach { (date, list) ->
                         list.forEach { entry ->
                             item(key = entry.id) {
                                 CalculationHistoryItem(
@@ -114,11 +116,13 @@ fun CalculationHistoryList(
                             }
                         }
                         item {
-                            val dayString = when (id) {
-                                LocalDate.now() -> "Today"
-                                LocalDate.now().minusDays(1) -> "Yesterday"
-                                else -> id.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-                            }
+                            val dayString =
+                                when (date) {
+                                    LocalDate.now() -> stringResource(R.string.history_date_today)
+                                    LocalDate.now().minusDays(1) -> stringResource(R.string.history_date_yesterday)
+                                    else -> date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+                                }
+
                             CalculationDivider(text = dayString)
                         }
                     }

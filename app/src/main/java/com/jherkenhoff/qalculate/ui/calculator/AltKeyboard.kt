@@ -1,5 +1,8 @@
 package com.jherkenhoff.qalculate.ui.calculator
 
+import androidx.compose.ui.res.stringResource
+import com.jherkenhoff.qalculate.R
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -108,7 +111,7 @@ fun BasicAltKeyboard(
             AltKeyboardButton(text=".", onClick={onKey(".")}, color = MaterialTheme.colorScheme.secondaryContainer)
             AltKeyboardButton(text="e", onClick={onKey("e")}, color = MaterialTheme.colorScheme.primaryContainer)
             AltKeyboardButton(text="Ans", onClick={}, color = MaterialTheme.colorScheme.primaryContainer)
-            AltKeyboardButton(icon=Icons.AutoMirrored.Filled.KeyboardReturn, description="Return button", onClick={onSubmit()}, color = MaterialTheme.colorScheme.primaryContainer)
+            AltKeyboardButton(icon=Icons.AutoMirrored.Filled.KeyboardReturn, description=stringResource(R.string.content_description_return_button), onClick={onSubmit()}, color = MaterialTheme.colorScheme.primaryContainer)
         }
     }
 }

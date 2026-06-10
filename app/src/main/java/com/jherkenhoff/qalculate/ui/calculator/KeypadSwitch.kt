@@ -36,8 +36,10 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jherkenhoff.qalculate.R
 import com.jherkenhoff.qalculate.model.KeypadDefinition
 
 @Composable
@@ -50,7 +52,16 @@ fun KeypadSwitch(
 ) {
     var expanded by remember{ mutableStateOf(false) }
 
-    val activeKeypad = keypads[activeKeypad]
+    val activeKeypadDefinition = keypads[activeKeypad]
+
+    val localizedKeypadName: @Composable (String) -> String = { name ->
+        when (name) {
+            "Basic" -> stringResource(R.string.keypad_basic)
+            "Advanced" -> stringResource(R.string.keypad_advanced)
+            "Keyboard" -> stringResource(R.string.keypad_keyboard)
+            else -> name
+        }
+    }
 
 
     Row(verticalAlignment = Alignment.Bottom) {
@@ -88,11 +99,11 @@ fun KeypadSwitch(
         ) {
             Box(modifier) {
                 TextButton({ expanded = true }) {
-                    Icon(activeKeypad.icon, null)
+                    Icon(activeKeypadDefinition.icon, null)
                     AnimatedVisibility(!compact) {
                         Row{
                             Spacer(Modifier.width(ButtonDefaults.IconSpacing))
-                            Text(activeKeypad.name)
+                            Text(localizedKeypadName(activeKeypadDefinition.name))
                         }
                     }
                 }
@@ -103,7 +114,7 @@ fun KeypadSwitch(
                 ) {
                     keypads.mapIndexed { i, keypad ->
                         DropdownMenuItem(
-                            text = { Text(keypad.name) },
+                            text = { Text(localizedKeypadName(keypad.name)) },
                             leadingIcon = { Icon(keypad.icon, null) },
                             onClick = { onKeypadChanged(i); expanded = false }
                         )
@@ -126,7 +137,7 @@ fun KeypadSwitch(
                         onClick = {}
                     )
                     IconButton({}) {
-                        Icon(Icons.Default.Close, "Dismiss autocomplete suggestions")
+                        Icon(Icons.Default.Close, stringResource(R.string.content_description_dismiss_autocomplete))
                     }
                 }
             } else {

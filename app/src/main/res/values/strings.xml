@@ -15,4 +15,95 @@
     <string name="clear_history_dialog_title">Clear calculation history?</string>
     <string name="dialog_clear_button">Clear</string>
     <string name="dialog_cancel_button">Cancel</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_general_heading">General</string>
+    <string name="settings_calculation_heading">Calculation</string>
+    <string name="settings_output_heading">Output</string>
+    <string name="settings_decimal_separator">Decimal separator</string>
+    <string name="settings_decimal_separator_dot">Dot</string>
+    <string name="settings_decimal_separator_comma">Comma</string>
+    <string name="settings_multiplication_sign">Multiplication sign</string>
+    <string name="settings_multiplication_sign_times">Times</string>
+    <string name="settings_multiplication_sign_asterisk">Asterisk</string>
+    <string name="settings_multiplication_sign_alt_dot">Alt. dot</string>
+    <string name="settings_division_sign">Division sign</string>
+    <string name="settings_division_sign_slash">Slash</string>
+    <string name="settings_division_sign_division">Division</string>
+    <string name="settings_division_sign_division_slash">Division slash</string>
+    <string name="settings_preserve_structure_title">Preserve structure</string>
+    <string name="settings_preserve_structure_desc">Preserve the input structure as much as possible</string>
+    <string name="settings_negative_exponents_title">Negative exponents</string>
+    <string name="settings_negative_exponents_desc">Print A*B⁻¹ instead of A/B</string>
+    <string name="settings_abbreviate_names_title">Abbreviate names</string>
+    <string name="settings_abbreviate_names_desc">Print m instead of meter</string>
+    <string name="settings_spacious_output_title">Spacious output</string>
+    <string name="settings_spacious_output_desc">Use more spaces to improve readability</string>
+    <string name="settings_allow_prefix_in_denominator_title">Allow prefix in denominator</string>
+    <string name="settings_allow_prefix_in_denominator_desc">Print km/ms instead of Mm/s</string>
+    <string name="settings_isolate_units_title">Isolate units</string>
+    <string name="settings_isolate_units_desc">Place units at the end of the result</string>
+    <string name="settings_exp_display_title">Exp display</string>
+    <string name="settings_interval_display_title">Interval display</string>
+    <string name="settings_interval_display_concise">Concise</string>
+    <string name="settings_interval_display_interval">Interval</string>
+    <string name="settings_interval_display_plusminus">Plus minus</string>
+    <string name="settings_interval_display_midpoint">Midpoint</string>
+    <string name="settings_interval_display_relative">Relative</string>
+    <string name="settings_interval_display_significant_digits">Significant digits</string>
+
+    <!-- Calculator Chips -->
+    <string name="chip_angle_unit">Angle unit</string>
+    <string name="chip_angle_unit_degrees">Degrees</string>
+    <string name="chip_angle_unit_radians">Radians</string>
+    <string name="chip_angle_unit_gradians">Gradians</string>
+    <string name="chip_approximation_mode">Approximation mode</string>
+    <string name="chip_approximation_mode_exact">Always exact</string>
+    <string name="chip_approximation_mode_try_exact">Try exact</string>
+    <string name="chip_approximation_mode_approximate">Approximate</string>
+    <string name="chip_numerical_display">Numerical display</string>
+    <string name="chip_numerical_display_normal">Normal</string>
+    <string name="chip_numerical_display_scientific">Scientific</string>
+    <string name="chip_numerical_display_engineering">Engineering</string>
+    <string name="chip_number_fraction_format">Number fraction format</string>
+    <string name="chip_number_fraction_format_decimal">Decimal</string>
+    <string name="chip_number_fraction_format_decimal_exact">Decimal exact</string>
+    <string name="chip_number_fraction_format_fractional">Fractional</string>
+    <string name="chip_number_fraction_format_combined">Combined</string>
+    <string name="chip_number_fraction_format_percent">Percent</string>
+    <string name="chip_number_fraction_format_permille">Permille</string>
+    <string name="chip_number_fraction_format_permyriad">Permyriad</string>
+
+    <!-- Units Screen -->
+    <string name="units_title">Units</string>
+    <string name="units_search_placeholder">search units</string>
+    <string name="units_system_label">System</string>
+    <string name="units_favorite_label">Favorite</string>
+    <string name="units_custom_label">Custom</string>
+    <string name="units_light_label">Light</string>
+
+    <!-- About Card -->
+    <string name="about_logo_description">Qalculate logo</string>
+    <string name="about_app_version">App version %s</string>
+    <string name="about_lib_version">libqalculate version %s</string>
+    <string name="about_check_out_on">Check out on %s</string>
+    <string name="about_github">GitHub</string>
+    <string name="about_no_warranty_full">This program comes with absolutely no warranty. See the %1$s for %2$s.</string>
+    <string name="about_license">GNU General Public License, version 2 or later</string>
+    <string name="about_details">details</string>
+
+    <!-- Calculator -->
+    <string name="history_empty_title">No calculations yet</string>
+    <string name="history_empty_desc">Your calculation history will appear here</string>
+    <string name="history_date_today">Today</string>
+    <string name="history_date_yesterday">Yesterday</string>
+    <string name="history_item_delete">Delete</string>
+    <string name="keypad_basic">Basic</string>
+    <string name="keypad_advanced">Advanced</string>
+    <string name="keypad_keyboard">Keyboard</string>
+    <string name="content_description_close_suggestions">Close suggestions</string>
+    <string name="content_description_dismiss_autocomplete">Dismiss autocomplete suggestions</string>
+    <string name="content_description_return_button">Return button</string>
+    <string name="content_description_open_navigation_menu">Open navigation menu</string>
 </resources>

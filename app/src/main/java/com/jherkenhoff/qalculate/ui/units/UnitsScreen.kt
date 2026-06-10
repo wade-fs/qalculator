@@ -42,9 +42,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jherkenhoff.qalculate.R
 
 data class UnitDefinition(
     val title: String,
@@ -83,13 +85,13 @@ fun UnitsScreenContent(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Units")
+                    Text(text = stringResource(R.string.units_title))
                 },
                 navigationIcon = {
                     IconButton(onClick = openDrawer) {
                         Icon(
                             imageVector = Icons.Filled.Menu,
-                            contentDescription = "Localized description"
+                            contentDescription = stringResource(R.string.open_menu_content_description)
                         )
                     }
 
@@ -98,7 +100,7 @@ fun UnitsScreenContent(
                     IconButton(onClick = {   }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.Sort,
-                            contentDescription = "Sort icon"
+                            contentDescription = null
                         )
                     }
                 }
@@ -124,9 +126,9 @@ fun UnitsScreenContent(
 
             SearchBar(
                 query = searchString,
-                placeholder = { Text("search units") },
+                placeholder = { Text(stringResource(R.string.units_search_placeholder)) },
                 active = false,
-                trailingIcon = { Icon(Icons.Filled.Search, contentDescription = "Search icon") },
+                trailingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
                 onActiveChange = {  },
                 onQueryChange = onSearchInputUpdate,
                 onSearch = {},
@@ -151,11 +153,11 @@ fun UnitsScreenContent(
                     FilterChip(
                         selected = true,
                         onClick = { expanded = true },
-                        label = { Text("Light") },
+                        label = { Text(stringResource(R.string.units_light_label)) },
                         trailingIcon = {
                             Icon(
                                 imageVector = Icons.Filled.ArrowDropDown,
-                                contentDescription = "Unit system icon"
+                                contentDescription = null
                             )
                         }
                     )
@@ -167,7 +169,7 @@ fun UnitsScreenContent(
                         )
                         HorizontalDivider()
                         DropdownMenuItem(
-                            text = { Text("Settings") },
+                            text = { Text(stringResource(R.string.navigation_settings)) },
                             onClick = { /* Handle settings! */ },
                         )
                         DropdownMenuItem(
@@ -179,23 +181,23 @@ fun UnitsScreenContent(
                 FilterChip(
                     selected = false,
                     onClick = { /*TODO*/ },
-                    label = { Text("System") },
+                    label = { Text(stringResource(R.string.units_system_label)) },
                     trailingIcon = {
                         Icon(
                             imageVector = Icons.Filled.ArrowDropDown,
-                            contentDescription = "Unit system icon"
+                            contentDescription = null
                         )
                     }
                 )
                 FilterChip(
                     selected = false,
                     onClick = { /*TODO*/ },
-                    label = { Text("Favorite") }
+                    label = { Text(stringResource(R.string.units_favorite_label)) }
                 )
                 FilterChip(
                     selected = false,
                     onClick = { /*TODO*/ },
-                    label = { Text("Custom") }
+                    label = { Text(stringResource(R.string.units_custom_label)) }
                 )
             }
 

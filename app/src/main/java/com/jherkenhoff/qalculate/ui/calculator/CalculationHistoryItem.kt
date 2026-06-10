@@ -1,5 +1,8 @@
 package com.jherkenhoff.qalculate.ui.calculator
 
+import androidx.compose.ui.res.stringResource
+import com.jherkenhoff.qalculate.R
+
 import android.content.ClipData
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -175,7 +178,8 @@ private fun Menu(
         onDismissRequest = onDismissRequest
     ) {
         DropdownMenuItem(
-            text = { Text("Delete") },
+            text = { Text(stringResource(R.string.history_item_delete)) },
+
             leadingIcon = { Icon(Icons.Outlined.Delete, contentDescription = null) },
             onClick = { onDismissRequest(); onDeleteClick() }
         )

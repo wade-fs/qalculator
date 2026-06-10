@@ -1,5 +1,8 @@
 package com.jherkenhoff.qalculate.ui.calculator
 
+import androidx.compose.ui.res.stringResource
+import com.jherkenhoff.qalculate.R
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,7 +33,7 @@ fun AutocompleteBar(
         modifier = modifier
     ) {
         IconButton(onClick = onDismiss) {
-            Icon(Icons.Outlined.Close, contentDescription = "Close suggestions")
+            Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.content_description_close_suggestions))
         }
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(6.dp),
