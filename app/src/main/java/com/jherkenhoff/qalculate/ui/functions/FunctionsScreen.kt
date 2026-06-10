@@ -28,6 +28,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -114,13 +115,19 @@ fun FunctionsScreenContent(
         ) {
 
             SearchBar(
-                query = searchString,
-                placeholder = { Text(stringResource(R.string.functions_search_placeholder)) },
-                active = false,
-                trailingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                onActiveChange = {  },
-                onQueryChange = onSearchInputUpdate,
-                onSearch = {},
+                expanded = false,
+                onExpandedChange = { },
+                inputField = {
+                    SearchBarDefaults.InputField(
+                        query = searchString,
+                        onQueryChange = onSearchInputUpdate,
+                        onSearch = {},
+                        expanded = false,
+                        onExpandedChange = { },
+                        placeholder = { Text(stringResource(R.string.functions_search_placeholder)) },
+                        trailingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
+                    )
+                },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
             }

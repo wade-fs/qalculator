@@ -100,8 +100,6 @@ fun AuxiliaryBar(
                                     label.description,
                                     modifier = Modifier.size(MaterialTheme.typography.labelLarge.lineHeight.toDp())
                                 )
-
-                                null -> null
                             }
                         }
                     }

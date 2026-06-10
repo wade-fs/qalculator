@@ -34,6 +34,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -125,13 +126,19 @@ fun UnitsScreenContent(
         ) {
 
             SearchBar(
-                query = searchString,
-                placeholder = { Text(stringResource(R.string.units_search_placeholder)) },
-                active = false,
-                trailingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                onActiveChange = {  },
-                onQueryChange = onSearchInputUpdate,
-                onSearch = {},
+                expanded = false,
+                onExpandedChange = { },
+                inputField = {
+                    SearchBarDefaults.InputField(
+                        query = searchString,
+                        onQueryChange = onSearchInputUpdate,
+                        onSearch = {},
+                        expanded = false,
+                        onExpandedChange = { },
+                        placeholder = { Text(stringResource(R.string.units_search_placeholder)) },
+                        trailingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
+                    )
+                },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
 

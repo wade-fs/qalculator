@@ -52,7 +52,7 @@ class AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): QalculateDatabase =
         Room.databaseBuilder(context, QalculateDatabase::class.java, "data.db")
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(dropAllTables = true)
             .build()
 
     @Provides
