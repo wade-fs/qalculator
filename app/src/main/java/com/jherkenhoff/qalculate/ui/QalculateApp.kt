@@ -45,11 +45,12 @@ fun QalculateApp() {
             drawerContent = {
                 NavigationDrawer(
                     currentBackStackEntry?.destination?.hierarchy?.any{it.hasRoute(NavDestinations.Calculator::class)} == true,
-                    false,
+                    currentBackStackEntry?.destination?.hierarchy?.any{it.hasRoute(NavDestinations.Functions::class)} == true,
                     false,
                     currentBackStackEntry?.destination?.hierarchy?.any{it.hasRoute(NavDestinations.Units::class)} == true,
                     false,
                     onCalculatorClick = { navController.navigate(NavDestinations.Calculator); coroutineScope.launch { drawerState.close() } },
+                    onFunctionsClick = { navController.navigate(NavDestinations.Functions); coroutineScope.launch { drawerState.close() } },
                     onUnitsClick = { navController.navigate(NavDestinations.Units); coroutineScope.launch { drawerState.close() } },
                     onAboutClick = { navController.navigate(NavDestinations.About); coroutineScope.launch { drawerState.close() } },
                     onSettingsClick = { navController.navigate(NavDestinations.Settings); coroutineScope.launch { drawerState.close() } },

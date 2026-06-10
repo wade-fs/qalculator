@@ -83,6 +83,16 @@
     <string name="units_custom_label">Custom</string>
     <string name="units_light_label">Light</string>
 
+    <!-- Functions -->
+    <string name="functions_title">Functions</string>
+    <string name="functions_search_placeholder">search functions</string>
+    <string name="add_function_title">Add function</string>
+    <string name="add_function_name_label">Name</string>
+    <string name="add_function_args_label">Arguments (comma separated)</string>
+    <string name="add_function_expression_label">Definition (expression)</string>
+    <string name="add_function_save">Save</string>
+    <string name="add_function_cancel">Cancel</string>
+
     <!-- About Card -->
     <string name="about_logo_description">Qalculate logo</string>
     <string name="about_app_version">App version %s</string>

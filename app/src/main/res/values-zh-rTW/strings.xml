@@ -83,6 +83,16 @@
     <string name="units_custom_label">自定義</string>
     <string name="units_light_label">輕量</string>
 
+    <!-- Functions -->
+    <string name="functions_title">函數</string>
+    <string name="functions_search_placeholder">搜尋函數</string>
+    <string name="add_function_title">新增函數</string>
+    <string name="add_function_name_label">名稱</string>
+    <string name="add_function_args_label">引數 (以逗號分隔)</string>
+    <string name="add_function_expression_label">定義 (運算式)</string>
+    <string name="add_function_save">儲存</string>
+    <string name="add_function_cancel">取消</string>
+
     <!-- About Card -->
     <string name="about_logo_description">Qalculate 圖示</string>
     <string name="about_app_version">應用程式版本 %s</string>

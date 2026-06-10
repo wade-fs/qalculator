@@ -11,6 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import com.jherkenhoff.libqalculate.libqalculateConstants
 import com.jherkenhoff.qalculate.ui.calculator.CalculatorScreen
 import com.jherkenhoff.qalculate.ui.calculator.CalculatorViewModel
+import com.jherkenhoff.qalculate.ui.functions.FunctionsScreen
+import com.jherkenhoff.qalculate.ui.functions.FunctionsViewModel
 import com.jherkenhoff.qalculate.ui.settings.SettingsScreen
 import com.jherkenhoff.qalculate.ui.settings.SettingsViewModel
 import com.jherkenhoff.qalculate.ui.units.UnitsScreen
@@ -20,6 +22,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class NavDestinations{
     @Serializable data object Calculator
+    @Serializable data object Functions
     @Serializable data object Units
     @Serializable data object About
     @Serializable data object Settings
@@ -43,6 +46,13 @@ fun QalculateNavGraph(
                 viewModel = hiltViewModel<CalculatorViewModel>(),
                 openDrawer = openDrawer,
                 openSettings = { navController.navigate(NavDestinations.Settings) },
+            )
+        }
+
+        composable<NavDestinations.Functions> {
+            FunctionsScreen(
+                viewModel = hiltViewModel<FunctionsViewModel>(),
+                openDrawer = openDrawer,
             )
         }
 
