@@ -24,8 +24,8 @@ android {
         applicationId = "com.jherkenhoff.qalculate"
         minSdk = 26
         targetSdk = 35
-        versionCode = 5
-        versionName = "0.2.1"
+        versionCode = 30
+        versionName = "0.3.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {useSupportLibrary = true }
@@ -53,8 +53,18 @@ android {
 
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(System.getenv("SIGNING_KEY_FILE") ?: "release.jks")
+            storePassword = System.getenv("SIGNING_STORE_PASSWORD")
+            keyAlias = System.getenv("SIGNING_KEY_ALIAS")
+            keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
         }
     }
 
