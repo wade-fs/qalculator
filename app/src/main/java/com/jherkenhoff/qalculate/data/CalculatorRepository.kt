@@ -11,6 +11,8 @@ import com.jherkenhoff.libqalculate.PrintOptions
 import com.jherkenhoff.libqalculate.Unit
 import com.jherkenhoff.libqalculate.Variable
 import com.jherkenhoff.libqalculate.libqalculateConstants
+import com.jherkenhoff.qalculate.data.database.dao.CustomFunctionDao
+import com.jherkenhoff.qalculate.data.database.model.CustomFunctionData
 import com.jherkenhoff.qalculate.model.UserPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,11 +20,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CalculatorRepository @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository,
-    private val appScope: CoroutineScope
+    private val appScope: CoroutineScope,
+    private val customFunctionDao: CustomFunctionDao
 ) {
     private val calc = Calculator()
 
@@ -34,6 +38,9 @@ class CalculatorRepository @Inject constructor(
 
     private var _functions = MutableStateFlow<List<MathFunction>>(calc.functions)
     val functions: StateFlow<List<MathFunction>> = _functions.asStateFlow()
+
+    private var _customFunctions = MutableStateFlow<List<CustomFunctionData>>(emptyList())
+    val customFunctions: StateFlow<List<CustomFunctionData>> = _customFunctions.asStateFlow()
 
     val ans = KnownVariable(calc.temporaryCategory(), "ans", "undefined")
 
@@ -49,9 +56,50 @@ class CalculatorRepository @Inject constructor(
             }
         }.launchIn(appScope)
 
+        appScope.launch {
+            customFunctionDao.getAll().collect { savedFunctions ->
+                _customFunctions.value = savedFunctions
+                savedFunctions.forEach { 
+                    defineFunctionInternal(it.name, it.title, it.description, it.arguments, it.expression)
+                }
+                _functions.value = calc.functions
+            }
+        }
+
         _variables.value = calc.variables
         _units.value = calc.units
         _functions.value = calc.functions
+    }
+
+    private fun defineFunctionInternal(name: String, title: String, description: String, args: String, expression: String) {
+        val definition = if (args.isBlank()) "$name := $expression" else "$name($args) := $expression"
+        calc.calculateAndPrint(definition, 2000)
+        
+        val func = calc.getFunction(name)
+        if (func != null) {
+            if (title.isNotBlank()) func.setTitle(title)
+            if (description.isNotBlank()) func.setDescription(description)
+        }
+    }
+
+    fun addCustomFunction(name: String, title: String, description: String, args: String, expression: String) {
+        appScope.launch {
+            val data = CustomFunctionData(name, title, description, args, expression)
+            customFunctionDao.insert(data)
+            defineFunctionInternal(name, title, description, args, expression)
+            _functions.value = calc.functions
+        }
+    }
+
+    fun deleteCustomFunction(name: String) {
+        appScope.launch {
+            customFunctionDao.deleteByName(name)
+            val func = calc.getFunction(name)
+            if (func != null) {
+                func.destroy()
+            }
+            _functions.value = calc.functions
+        }
     }
 
     fun setAnsExpression(expression: String) {

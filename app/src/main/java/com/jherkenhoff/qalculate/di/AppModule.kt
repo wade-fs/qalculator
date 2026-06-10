@@ -11,6 +11,7 @@ import com.jherkenhoff.qalculate.data.CalculatorRepository
 import com.jherkenhoff.qalculate.data.UserPreferencesRepository
 import com.jherkenhoff.qalculate.data.database.QalculateDatabase
 import com.jherkenhoff.qalculate.data.database.dao.CalculationHistoryItemDao
+import com.jherkenhoff.qalculate.data.database.dao.CustomFunctionDao
 import com.jherkenhoff.qalculate.data.repository.CalculationHistoryStore
 import dagger.Module
 import dagger.Provides
@@ -57,6 +58,10 @@ class AppModule {
     @Singleton
     fun provideCalculationHistoryItemDao(database: QalculateDatabase): CalculationHistoryItemDao = database.calculationHistoryItemDao()
 
+    @Provides
+    @Singleton
+    fun provideCustomFunctionDao(database: QalculateDatabase): CustomFunctionDao = database.customFunctionDao()
+
 
     @Provides
     @Singleton
@@ -66,8 +71,11 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideCalculatorRepository(userPreferencesRepository: UserPreferencesRepository): CalculatorRepository {
-        return CalculatorRepository(userPreferencesRepository, provideAppScope())
+    fun provideCalculatorRepository(
+        userPreferencesRepository: UserPreferencesRepository,
+        customFunctionDao: CustomFunctionDao
+    ): CalculatorRepository {
+        return CalculatorRepository(userPreferencesRepository, provideAppScope(), customFunctionDao)
     }
 
 }

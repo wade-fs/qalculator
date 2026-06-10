@@ -87,11 +87,15 @@
     <string name="functions_title">Functions</string>
     <string name="functions_search_placeholder">search functions</string>
     <string name="add_function_title">Add function</string>
+    <string name="edit_function_title">Edit function</string>
     <string name="add_function_name_label">Name</string>
+    <string name="add_function_title_label">Title</string>
+    <string name="add_function_desc_label">Description</string>
     <string name="add_function_args_label">Arguments (comma separated)</string>
     <string name="add_function_expression_label">Definition (expression)</string>
     <string name="add_function_save">Save</string>
     <string name="add_function_cancel">Cancel</string>
+    <string name="add_function_delete">Delete</string>
 
     <!-- About Card -->
     <string name="about_logo_description">Qalculate logo</string>
